@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Untitled Document</title>
+<style>
+.keystroke{
+	font-family:Arial, Helvetica, sans-serif; font-size:8pt;
+	height:auto; width:auto;
+
+}
+
+.box{
+	display:inline-block;
+	width:100px;
+	height:100px;
+	z-index:1;
+	margin:10px;
+	
+	font-size: 30px;
+	text-align:center;
+
+	border: 4px outset blue;
+	background-color:blue;
+}
+
+</style>
+
+<script src="keystrokes.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+<form>
+<p> Clique para personalizar as teclas, ou clique duas vezes para remover.</p>
+
+<p>Acelerar:<input type="button" id="Kacelerar" value="W" class="keystroke" placeholder="Pressione uma tecla" /></p>
+<p>Direita: <input type="button" id="Kdireita" value="D" class="keystroke" placeholder="Pressione uma tecla" /></p>
+<p>Esquerda: <input type="button" id="Kesquerda" value="A" class="keystroke" placeholder="Pressione uma tecla" /></p>
+<p>Freiar:
+<input type="button" id="Kfreiar" value="S" class="keystroke" placeholder="Pressione uma tecla" />
+<input type="button" id="Kfreiar2" value="SPACE" class="keystroke" placeholder="Pressione uma tecla" />
+</p>
+</form>
+
+<br><hr><br>
+
+<p> Testing </p>
+<div class="box" id="esquerda">☜ <br /> Esquerda</div>
+<div class="box" id="acelerar">☝<br /> Acelerar</div>
+<div class="box" id="freiar">☟<br /> Freiar</div>
+<div class="box" id="direita">☞<br /> Direita</div>
+
+
+</body>
+</html>
+
+<script>
+
+initializeKeystrokeButtons();
+
+
+
+addEvent(document.body,"keydown",function(e){
+	
+	hotAction(e,'#Kacelerar', aceleraY);
+	hotAction(e,'#Kdireita', direitaY);
+	hotAction(e,'#Kesquerda', esquerdaY);
+	hotAction(e,'#Kfreiar', freiaY);
+	hotAction(e,'#Kfreiar2', freiaY);
+	
+});
+
+addEvent(document.body,"keyup",function(e){
+	
+	hotAction(e,'#Kacelerar', aceleraN);
+	hotAction(e,'#Kdireita', direitaN);
+	hotAction(e,'#Kesquerda', esquerdaN);
+	hotAction(e,'#Kfreiar', freiaN);
+	hotAction(e,'#Kfreiar2', freiaN);
+	
+});
+
+
+
+/* Exemple of utilization
+
+addEvent(document.body,"keyup",function(e){
+
+	if(keystrokeDetected(e,'keystroke_button_id')){ 
+		//do something
+	}
+	
+});
+
+*/
+
+
+
+
+// game actions
+
+var saida=document.getElementById('saida');
+
+function id(id){
+	return document.getElementById(id);
+}
+
+function aceleraY(){
+	id('acelerar').style.backgroundColor="yellow";
+}
+function aceleraN(){
+	id('acelerar').style.backgroundColor="";
+}
+
+function freiaY(){
+	id('direita').style.backgroundColor="yellow";
+}
+function freiaN(){
+	id('direita').style.backgroundColor="";
+}
+
+function esquerdaY(){
+	 id('esquerda').style.backgroundColor="yellow";
+}
+function esquerdaN(){
+	 id('esquerda').style.backgroundColor="";
+}
+
+function direitaY(){
+	id('freiar').style.backgroundColor="yellow";
+}
+function direitaN(){
+	id('freiar').style.backgroundColor="";
+}
+
+</script>
